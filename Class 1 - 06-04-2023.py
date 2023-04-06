@@ -9,6 +9,10 @@
     For those of us who have some knowledge, we need some patience so that the
     beginners can catch up
 
+    Sessions will be on Wednesdays and Thursdays
+    2 Sessions a week
+    8 Sessions in total
+
     Tasks
     TODO How to work with Jupiter Notebook Files
 """
@@ -110,13 +114,13 @@
 # print(even)
 
 # Test 10
-name = input("Enter your name: ")
-sandwich = input(f"Hi {name}! Nice to meet you! Would you like a sandwich? ")
+# name = input("Enter your name: ")
+# sandwich = input(f"Hi {name}! Nice to meet you! Would you like a sandwich? ")
 
-if sandwich == "Yes" or "yes" or "Y" or "y":
-    print(f"Here's your sandwich {name} 🥪")
-else:
-    print("Sorry. No sandwich for you.")
+# if sandwich == "Yes" or "yes" or "Y" or "y":
+#     print(f"Here's your sandwich {name} 🥪")
+# else:
+#     print("Sorry. No sandwich for you.")
 
 
 # Test 11
@@ -128,3 +132,228 @@ else:
 
     You can check out how they're used throughout this file
 """
+
+# Exercise 1
+"""
+    Write a program to prompt the user for hours and rate per hour to compute
+    gross pay.
+
+    Eg:
+    Enter Hours: 35
+    Enter Rate: 2.75
+    Pay: 96.25
+
+    Where Pay = Hours * Rate
+"""
+# # * Initial Submission
+# hours = input("Enter Hours: ")
+# rate = input("Enter Rate: ")
+# hours = float(hours)
+# rate = float(rate)
+# pay = hours * rate
+# print(f"Pay: {pay}")
+
+
+# # * Shortened code
+# hours = float(input("Enter Hours: "))
+# rate = float(input("Enter Rate: "))
+# print(f"Pay: {hours * rate}")
+
+"""
+    NOTE:
+    I've seen that with regard to the way the lecturer works, he prioritizes
+    concise code over verbose code.
+
+    He also prefers efficient yet readable code.
+
+    Have to keep watch for this.
+"""
+
+
+# Exercise 2
+"""
+    Write a program which prompts the user for a Celsius temperature, convert
+    the temperature to Fahrenheit, and print out the converted temperature.
+
+    fahrenheit = celsius * 1.8 + 32
+"""
+# * Initial Submission
+# celsius = float(input("Input a temperature in Celsius: "))
+# print(f"Your temperature in Fahrenheit is {celsius * 1.8 + 32}ºF")
+
+# * Custom Implementation
+# celsius = float(input("Input a temperature in Celsius: "))
+# fahrenheit = format(celsius * 1.8 + 32, ".2f")  # Formats to 2 decimal places
+# print(f"Your temperature in Fahrenheit is {fahrenheit}ºF")
+
+
+# Test 12
+"""
+    Boolean Algebra
+    To check if a value is an instance of a certain data type we use:
+    isinstance(variable, data_type)
+
+    Eg:
+    x = 5
+    print(isinstance(x, list)) => This will print false
+"""
+# # If Statements
+# x = 5
+# if x > 0:
+#     print("x is positive")
+
+# # If with Else Statement
+# x = 0
+# if x > 0:
+#     print("x is positive")
+# else:
+#     print("x is either zero or negative")
+
+
+# # One Liner
+# x = -5
+# print("x is positive") if x > 0 else print("x is either zero or negative")
+
+# # Chained Conditionals
+# x = 5
+# y = 10
+
+# if x < y:
+#     print("x is less than y")
+# elif x > y:
+#     print("x is greater than y")
+# else:
+#     print("x and y are equal")
+
+# choice = "b"
+# if choice == "a":
+#     print("Bad guess")
+# elif choice == "b":
+#     print("Good guess")
+# else:
+#     print("Close, but not correct")
+
+
+# Nested conditionals
+# x = 5
+# y = 10
+
+# if x == y:
+#     print("x and y are equal")
+# else:
+#     if x < y:
+#         print("x is less than y")
+#     elif x > y:
+#         print("x is greater than y")
+
+
+# Test 13
+"""
+    Error Handling
+    Type:
+        1. try and except
+
+    # TODO Add dictionary implementation
+"""
+# # try and except
+# try:
+#     print(x)
+# except Exception as exception:
+#     print(f"An exception occurred. Exception message: {exception}")
+
+# try:
+#     print(x)
+# except Exception:
+#     pass
+
+# try:
+#     print(x)
+# except NameError as error:
+#     print(f"An exception occurred. Exception message: {error}")
+# except Exception as exception:
+#     print(f"Something went wrong. Exception message: {exception}")
+# else:
+#     print("Something went wrong.")
+
+# try:
+#     print(x)
+# except NameError as error:
+#     print(f"An exception occurred. Exception message: {error}")
+# except Exception as exception:
+#     print(f"Something went wrong. Exception message: {exception}")
+# else:
+#     print("Something went wrong.")
+# finally:
+#     print("Exit Code 0")
+
+
+# # Raise an Exception
+# x = -1
+
+# if x < 0:
+#     raise Exception("Sorry, no numbers below zero")
+
+# x = -1
+
+# if x < 0:
+#     raise NameError("Sorry, no numbers below zero")
+
+# x = "hello"
+
+# if not type(x) is int:
+#     raise TypeError("Only integers allowed")
+
+
+# Exercise 3
+"""
+    1.Rewrite your pay computation to give the employee 1.5 times the hourly
+    rate for hours worked above 40 hours.
+
+    Eg:
+    Enter Hours: 45
+    Enter Rate: 10
+    Pay: 475.0
+"""
+# # * Initial Submission
+# hours = float(input("Enter Hours: "))
+# rate = float(input("Enter Rate: "))
+# pay = 0.0
+
+# if hours <= 40:
+#     pay = hours * rate
+# elif hours > 40:
+#     overtime_hours = hours - 40
+#     pay = (40 * rate) + (overtime_hours * (rate * 1.5))
+
+# print(f"Pay: {pay}")
+
+# # * Custom Implementation
+# hours = float(input("Enter Hours: "))
+# rate = float(input("Enter Rate: "))
+# overtime_mark = 40.0
+# pay = 0.0
+
+# if hours <= overtime_mark:
+#     pay = hours * rate
+# elif hours > overtime_mark:
+#     overtime_hours = hours - overtime_mark
+#     pay = (overtime_mark * rate) + (overtime_hours * (rate * 1.5))
+
+# print(f"Pay: {pay}")
+
+# # * Other Custom Implementation
+# pay = 0.0
+# overtime_mark = 40.0
+
+# try:
+#     hours = float(input("Enter Hours: "))
+#     rate = float(input("Enter Rate: "))
+
+#     if hours <= overtime_mark:
+#         pay = hours * rate
+#     elif hours > overtime_mark:
+#         overtime_hours = hours - overtime_mark
+#         pay = (overtime_mark * rate) + (overtime_hours * (rate * 1.5))
+#     print(f"Pay: {pay}")
+# except Exception:
+#     print("Please input a numeric value")
