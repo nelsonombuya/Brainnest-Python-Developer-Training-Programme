@@ -250,10 +250,7 @@
 # Test 13
 """
     Error Handling
-    Type:
-        1. try and except
-
-    # TODO Add dictionary implementation
+    Usually try and except, and raising exceptions
 """
 # # try and except
 # try:
@@ -285,6 +282,14 @@
 #     print("Something went wrong.")
 # finally:
 #     print("Exit Code 0")
+
+# Try Catch Implementation for choice
+# try:
+#     choice = input("Input a letter: ")
+#     response = {"a": "Bad guess", "b": "Good guess"}
+#     print(response[choice])
+# except Exception:
+#     print("Close, but not correct")
 
 
 # # Raise an Exception
