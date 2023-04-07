@@ -97,39 +97,60 @@ while no_of_tries > 0:
 
 
 def hangman(word: str = "java", no_of_tries: int = 6):
-    used_letters = []
+    try:
+        # Checking if the word is alphabetical
+        if not word.isalpha():
+            raise Exception("Word should only contain alphabetical characters")
+
+        # Checking if the word has a whitespace
+        if " " in word:
+            raise Exception("Word should not have whitespaces")
+
+        # Checking if no_of_tries is greater than zero
+        if no_of_tries <= 0:
+            raise Exception("The number of tries should be greater than zero")
+    except Exception as exception:
+        print(f"{exception} - Word: '{word}', Number of Tries: {no_of_tries}")
+        return
 
     # Set the number of underscores to equal the number of letters in the word
+    used_letters = []
     correct_guesses = []
     [correct_guesses.append("_") for letter in word]
 
-    while no_of_tries > 0:
+    while True:
         try:
-            print(f"You have {no_of_tries} tries left.")
+            print(f"\nYou have {no_of_tries} tries left.")
             print(f"Used Letters: {', '.join(used_letters)}")
             print(f"Word: {' '.join(correct_guesses)}")
-            guess = input("Guess a letter: ")
+
+            # If the number of tries are over, the player loses
+            if no_of_tries <= 0:
+                print(f"The correct word was: {word}")
+                print("Game Over! 😔\n")
+                break
 
             # Checking if guess is a letter
+            guess = input("Guess a letter: ")
             if guess.isalpha():
                 used_letters.append(guess)
             else:
-                raise TypeError("Kindly input a letter.")
+                raise TypeError("Kindly input a letter.\n")
 
             # Checking for the guessed letter in the word
             # And updating the correctly guessed letters
             for index, letter in enumerate(word):
-                if guess == letter:
+                if guess.lower() == letter.lower():
                     correct_guesses[index] = letter
 
             # Checking if all of the letters have been guessed correctly
             if "_" not in correct_guesses:
-                print(f"You guessed the word {word}!")
+                print(f"You guessed the word {word}! 🥳\n")
                 break
-
-            no_of_tries -= 1
-            print()  # Prints an empty new line
+            else:
+                no_of_tries -= 1
+                continue
         except TypeError as error:
             print(error)
-        except Exception as exception:
-            print(f"Something went wrong. Exception Message: {exception}")
+        except Exception as error:
+            print(f"Something went wrong. Error Message: {error}")
