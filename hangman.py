@@ -1,5 +1,9 @@
 def hangman(word: str = "java", no_of_tries: int = 6):
     try:
+        # Checking if the word is alphabetical
+        if not word.isalpha():
+            raise Exception("Word should only contain alphabetical characters")
+
         # Checking if the word has a whitespace
         if " " in word:
             raise Exception("Word should not have whitespaces")
@@ -21,9 +25,15 @@ def hangman(word: str = "java", no_of_tries: int = 6):
             print(f"\nYou have {no_of_tries} tries left.")
             print(f"Used Letters: {', '.join(used_letters)}")
             print(f"Word: {' '.join(correct_guesses)}")
-            guess = input("Guess a letter: ")
+
+            # If the number of tries are over, the player loses
+            if no_of_tries <= 0:
+                print(f"The correct word was: {word}")
+                print("Game Over! 😔\n")
+                break
 
             # Checking if guess is a letter
+            guess = input("Guess a letter: ")
             if guess.isalpha():
                 used_letters.append(guess)
             else:
@@ -39,12 +49,9 @@ def hangman(word: str = "java", no_of_tries: int = 6):
             if "_" not in correct_guesses:
                 print(f"You guessed the word {word}! 🥳\n")
                 break
-
-            # If the number of tries are over, the player loses
-            no_of_tries -= 1
-            if no_of_tries <= 0:
-                print("Game Over! 😔\n")
-                break
+            else:
+                no_of_tries -= 1
+                continue
         except TypeError as error:
             print(error)
         except Exception as error:
