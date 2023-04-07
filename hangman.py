@@ -1,61 +1,52 @@
 def hangman(word: str = "java", no_of_tries: int = 6):
-    try:
-        # Checking if the word is alphabetical
-        if not word.isalpha():
-            raise Exception("Word should only contain alphabetical characters")
+    # Check if the word is alphabetical
+    if not word.isalpha():
+        raise ValueError("Word should only contain alphabetical characters")
 
-        # Checking if the word has a whitespace
-        if " " in word:
-            raise Exception("Word should not have whitespaces")
+    # Check if the word has whitespace
+    if " " in word:
+        raise ValueError("Word should not have whitespaces")
 
-        # Checking if no_of_tries is greater than zero
-        if no_of_tries <= 0:
-            raise Exception("The number of tries should be greater than zero")
-    except Exception as exception:
-        print(f"{exception} - Word: '{word}', Number of Tries: {no_of_tries}")
-        return
+    # Check if no_of_tries is greater than zero
+    if no_of_tries <= 0:
+        raise ValueError("The number of tries should be greater than zero")
 
     # Set the number of underscores to equal the number of letters in the word
     used_letters = []
-    correct_guesses = []
-    [correct_guesses.append("_") for letter in word]
+    correct_guesses = ["_" for _ in range(len(word))]
 
-    while True:
-        try:
-            print(f"\nYou have {no_of_tries} tries left.")
-            print(f"Used Letters: {', '.join(used_letters)}")
-            print(f"Word: {' '.join(correct_guesses)}")
+    while no_of_tries > 0:
+        print(f"\nYou have {no_of_tries} tries left.")
+        print(f"Used Letters: {', '.join(used_letters)}")
+        print(f"Word: {' '.join(correct_guesses)}")
 
-            # If the number of tries are over, the player loses
-            if no_of_tries <= 0:
-                print(f"The correct word was: {word}")
-                print("Game Over! 😔\n")
-                break
+        guess = input("Guess a letter: ")
+        if not guess.isalpha():
+            print("Kindly input a letter.\n")
+            continue
 
-            # Checking if guess is a letter
-            guess = input("Guess a letter: ")
-            if guess.isalpha():
-                used_letters.append(guess)
-            else:
-                raise TypeError("Kindly input a letter.\n")
+        guess = guess.lower()
+        if guess in used_letters:
+            print("You've already guessed that letter. Try again.\n")
+            continue
 
-            # Checking for the guessed letter in the word
-            # And updating the correctly guessed letters
-            for index, letter in enumerate(word):
-                if guess.lower() == letter.lower():
-                    correct_guesses[index] = letter
+        used_letters.append(guess)
 
-            # Checking if all of the letters have been guessed correctly
-            if "_" not in correct_guesses:
-                print(f"You guessed the word {word}! 🥳\n")
-                break
-            else:
-                no_of_tries -= 1
-                continue
-        except TypeError as error:
-            print(error)
-        except Exception as error:
-            print(f"Something went wrong. Error Message: {error}")
+        if guess in word.lower():
+            for i, letter in enumerate(word.lower()):
+                if letter == guess:
+                    correct_guesses[i] = word[i]
+        else:
+            print("That letter is not in the word. Try again.\n")
+
+        if "_" not in correct_guesses:
+            print(f"You guessed the word {word}! 🥳\n")
+            return
+
+        no_of_tries -= 1
+
+    print(f"The correct word was: {word}")
+    print("Game Over! 😔\n")
 
 
 if __name__ == "__main__":
