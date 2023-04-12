@@ -13,7 +13,7 @@ def hangman(word: str = "java", no_of_tries: int = 6):
 
     # Set the number of underscores to equal the number of letters in the word
     used_letters = []
-    correct_guesses = ["_" for _ in range(len(word))]
+    correct_guesses = ["_" for letter in word]
 
     while no_of_tries > 0:
         print(f"\nYou have {no_of_tries} tries left.")
@@ -33,17 +33,17 @@ def hangman(word: str = "java", no_of_tries: int = 6):
         used_letters.append(guess)
 
         if guess in word.lower():
-            for i, letter in enumerate(word.lower()):
+            for index, letter in enumerate(word.lower()):
                 if letter == guess:
-                    correct_guesses[i] = word[i]
+                    correct_guesses[index] = word[index]
         else:
             print("That letter is not in the word. Try again.\n")
 
         if "_" not in correct_guesses:
             print(f"You guessed the word {word}! 🥳\n")
             return
-
-        no_of_tries -= 1
+        else:
+            no_of_tries -= 1
 
     print(f"The correct word was: {word}")
     print("Game Over! 😔\n")
