@@ -244,9 +244,9 @@ adults = list(map(lambda age: age > 18, ages))
 summed_ages = reduce((lambda x, y: x + y), ages)
 # print(summed_ages)
 
-# string_list = ["a", "b", "c", "d", "e"]
-# uppercase_list = [(lambda arg=string: arg.upper())() for string in string_list]
-# print(uppercase_list)
+string_list = ["a", "b", "c", "d", "e"]
+uppercase_list = [(lambda arg=string: arg.upper())() for string in string_list]
+print(uppercase_list)
 
 to_upper = lambda string_list: [string.upper() for string in string_list]
 # print(to_upper(["a", "b", "c", "d", "e"]))
