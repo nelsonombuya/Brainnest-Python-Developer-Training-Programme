@@ -2,7 +2,7 @@
 Using re
 """
 
-import re
+# import re
 
 txt = "The rain in Spain in 1946 caused temperatures of -3 degrees. I'm Sane"
 # print(re.search("ai", txt))
@@ -145,7 +145,8 @@ This includes whitespaces
 # print(re.search(r"^S\w+", f"S{txt}").group())  # type:ignore
 
 # Checking for email addresses
-# pattern = re.compile(r"^[a-zA-Z0-9\.\-_]+@{1}[a-zA-Z0-9]+\.{1}[a-zA-Z]{2-4}$")
+# pattern = r"^[a-zA-Z0-9\.\-_]+@{1}[a-zA-Z0-9]+\.{1}[a-zA-Z]{2-4}$"
+# pattern = re.compile(pattern)
 # print(pattern.search("info-wow@example.com"))
 # print(pattern.search("info@@example.com"))
 # print(pattern.search("info@example..com"))
@@ -232,7 +233,11 @@ Exercise 4
 
 
 # def flatten_list(nested_list: list):
-#     return [nested_element for element in nested_list for nested_element in element]
+#     return [
+#       nested_element
+#       for element in nested_list
+#       for nested_element in element
+#     ]
 
 
 # print(flatten_list([[1, 2, 3], [4, 5, 6], [7, 8, 9, 0]]))
